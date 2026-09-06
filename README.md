@@ -16,16 +16,31 @@ pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3020](http://localhost:3020) (or the port printed by `pnpm dev`).
 
-## iOS home-screen icon
+## Brand logo & iOS icon
 
-Placeholder icons live in `public/icons/` (`180`, `192`, `512`). Apple touch icon and app icons are also registered in `src/app/` (`apple-icon.png`, `icon.png`) and `src/app/manifest.ts`.
+Source artwork: `public/brand/italy-icon-source.jpeg`  
+Processed assets:
 
-To regenerate placeholders:
+- `public/logo.png` — in-app logo (`AppLogo`)
+- `public/icons/icon-{32,180,192,512}.png` — PWA / home screen
+- `src/app/apple-icon.png` + `src/app/icon.png` — Next metadata icons
+
+Regenerate after replacing the source image:
 
 ```bash
 python3 scripts/generate-icons.py
+```
+
+## Illustrations
+
+Source sheet: `public/brand/italy-items-source.png`  
+Split assets: `public/illustrations/*.png`  
+Registry: `src/design-system/illustrations.ts`
+
+```bash
+python3 scripts/split-illustrations.py
 ```
 
 ## Deploy

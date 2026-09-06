@@ -1,36 +1,61 @@
-export default function Home() {
+import Link from 'next/link'
+import { AppLogo } from '@/components/AppLogo'
+import { Badge, Button, Stack, Surface } from '@/components/ui'
+
+export default function HomePage() {
     return (
-        <div className="flex flex-1 flex-col items-center justify-center bg-[#F4F5F0] px-6">
-            <main className="flex w-full max-w-md flex-col items-center gap-6 text-center">
-                <div
-                    aria-hidden
-                    className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-[22%] shadow-lg"
-                    style={{
-                        background:
-                            'linear-gradient(90deg, #008C45 0%, #008C45 33.33%, #F4F5F0 33.33%, #F4F5F0 66.66%, #CD212A 66.66%)',
-                    }}
-                >
-                    <div className="flex h-14 w-14 flex-col items-center justify-center rounded-full bg-[#0F2A3A] text-[#E8C547]">
-                        <span className="text-lg font-bold leading-none tracking-wide">
-                            IT
-                        </span>
-                        <span className="text-[10px] font-semibold leading-none text-white">
-                            2026
-                        </span>
-                    </div>
-                </div>
+        <main className="mx-auto flex w-full max-w-lg flex-1 flex-col gap-6 px-4 py-8">
+            <Stack gap="md" align="center" className="pt-4 text-center">
+                <AppLogo size={96} priority />
                 <div className="flex flex-col gap-2">
-                    <h1 className="text-3xl font-semibold tracking-tight text-[#0F2A3A]">
+                    <h1 className="text-3xl font-semibold tracking-tight text-foreground">
                         Italy 2026
                     </h1>
-                    <p className="text-base leading-relaxed text-[#0F2A3A]/80">
-                        Trip companion app — content coming soon.
+                    <p className="text-base leading-relaxed text-muted-foreground">
+                        הטיול שלנו לאיטליה — מסמכים, תוכנית וכל מה שצריך במקום
+                        אחד.
                     </p>
                 </div>
-                <p className="text-sm text-[#0F2A3A]/55">
-                    On iPhone: Share → Add to Home Screen for the full app icon.
-                </p>
-            </main>
-        </div>
+                <Badge variant="primary">בקרוב</Badge>
+            </Stack>
+
+            <div className="grid gap-3">
+                <Surface variant="raised" padding="lg">
+                    <Stack gap="sm">
+                        <h2 className="text-base font-semibold text-foreground">
+                            מסמכים
+                        </h2>
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                            כרטיסים, הזמנות וקבצים חשובים לטיול.
+                        </p>
+                        <Button href="/documents" className="mt-1">
+                            למסמכים
+                        </Button>
+                    </Stack>
+                </Surface>
+                <Surface variant="raised" padding="lg">
+                    <Stack gap="sm">
+                        <h2 className="text-base font-semibold text-foreground">
+                            תוכנית טיול
+                        </h2>
+                        <p className="text-sm leading-relaxed text-muted-foreground">
+                            ימים, מקומות ולוח זמנים.
+                        </p>
+                        <Button href="/trip-plan" variant="secondary" className="mt-1">
+                            לתוכנית
+                        </Button>
+                    </Stack>
+                </Surface>
+            </div>
+
+            <p className="text-center text-xs text-muted-foreground">
+                <Link
+                    href="/design-system"
+                    className="underline underline-offset-2"
+                >
+                    Design system
+                </Link>
+            </p>
+        </main>
     )
 }

@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist_Mono, Heebo } from 'next/font/google'
+import { BottomNav } from '@/components/navigation/BottomNav'
 import './globals.css'
 
-const geistSans = Geist({
-    variable: '--font-geist-sans',
-    subsets: ['latin'],
+const heebo = Heebo({
+    variable: '--font-heebo',
+    subsets: ['hebrew', 'latin'],
+    weight: ['300', '400', '500', '600', '700'],
 })
 
 const geistMono = Geist_Mono({
@@ -19,6 +21,19 @@ export const metadata: Metadata = {
     },
     description: 'Italy 2026 trip companion — coming soon.',
     applicationName: 'Italy 2026',
+    robots: {
+        index: false,
+        follow: false,
+        nocache: true,
+        googleBot: {
+            index: false,
+            follow: false,
+            noimageindex: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'none',
+            'max-snippet': -1,
+        },
+    },
     appleWebApp: {
         capable: true,
         title: 'Italy 2026',
@@ -47,8 +62,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
     themeColor: [
-        { media: '(prefers-color-scheme: light)', color: '#008C45' },
-        { media: '(prefers-color-scheme: dark)', color: '#008C45' },
+        { media: '(prefers-color-scheme: light)', color: '#4FBA74' },
+        { media: '(prefers-color-scheme: dark)', color: '#4FBA74' },
     ],
     width: 'device-width',
     initialScale: 1,
@@ -59,10 +74,16 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<'/'>) {
     return (
         <html
-            lang="en"
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+            lang="he"
+            dir="rtl"
+            className={`${heebo.variable} ${geistMono.variable} h-full antialiased`}
         >
-            <body className="flex min-h-full flex-col">{children}</body>
+            <body className="flex min-h-full flex-col font-hebrew">
+                <div className="flex flex-1 flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))]">
+                    {children}
+                </div>
+                <BottomNav />
+            </body>
         </html>
     )
 }
